@@ -1,0 +1,11 @@
+opencv-python==4.7.0.72
+tensorboard==2.11.0
+wandb==0.13.10
+imageio==2.25.1
+tqdm==4.64.1
+lpips==0.1.4
+ninja==1.11.1
+pymcubes==0.1.4
+trimesh==3.20.1
+kornia==0.6.10
+open3d==0.16.0

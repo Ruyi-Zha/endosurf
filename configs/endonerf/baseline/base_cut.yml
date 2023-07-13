@@ -1,0 +1,79 @@
+exp:  # Experiment options
+  project_name: endonerf
+  exp_name: base   # Experiment name
+  exp_dir: logs/   # Where to save experiment results
+
+data:  # Dataset and dataloader options
+  info_dir: data/data_info/endonerf/cutting_tissues_twice.pkl
+  normalize_time: True  # If normalize time to [0, 1]
+
+render:
+  type: endonerf
+  net_chunk: 80000  # Number of inputs sent into network each time (reduce to prevent out of memory)
+  n_samples: 64  # Number of points sampled in the interval
+  n_importance: 64  
+  perturb: True  # If add noise during sampling
+  use_depth_sampling: True  # If use depth oriented sampling
+  depth_sampling_sigma: 1.0  # Standard deviation of depth guided sampling
+
+train:  # Training options
+  n_iter: 100000  # Training iterations
+  color_loss_weight: 1.0  # Color loss weight
+  depth_loss_weight: 1.0  # Depth loss weight
+  resume: False  # If resume training
+  ray_batch: 2048  # Number of rays sampled from an image per training iteration
+  mask_guided_ray_sampling: True  # If use masked guided ray casting
+  eval:
+    ray_batch: 2048  # Number of rays processed each time (reduce to prevent out of memory)
+  optim:  # Optimization options
+    lr: 0.0005
+    lr_decay: 250  # Exponential learning rate decay (in 1000 steps)
+    
+net:  # Network options
+  net_type: dnerf
+  use_deform: True
+  raw_noise_std: 1.0  # Noise added to density
+  enc_pos_density_cfg:  # Encoder for density position
+    enc_type: frequency 
+    input_dim: 3
+    multires: 10
+  enc_dir_color_cfg:  # Encoder for color direction
+    enc_type: frequency 
+    input_dim: 3
+    multires: 4
+  enc_time_deform_cfg:  # Encoder for deform time
+    enc_type: frequency 
+    input_dim: 1
+    multires: 10
+  enc_pos_deform_cfg:  # Encoder for deform position
+    enc_type: frequency 
+    input_dim: 3
+    multires: 10
+  net_deform_cfg: # Deform network
+    n_layers: 9
+    hidden_dim: 256
+    skips: [5]
+  net_density_cfg: # Density network
+    n_layers: 9
+    hidden_dim: 256
+    skips: [5]
+  net_color_cfg: # Color network
+    n_layers: 2
+    hidden_dim: 128
+    skips: []
+  geo_feat_dim: 256  # Feature vector
+
+log:  # Logging options
+  summary_writer: 
+    type: tensorboard  # Tool for tracking experiments (wandb, tensorboard)
+  i_eval: 20000  # Test every N iterations
+  i_save: 2500  # Save model every N iterations
+
+demo:
+  fps: 10  # Frame rate of demo video and gif
+  ray_batch: 2048  # Number of rays processed each time
+  net_chunk: 5000  # Number of points processed each time
+  marching_cubes_resolution: 128  # Marhing cube resolution
+  marching_cubes_thresh: 5  # Marhing cube threshold
+  depth_filter: [24, 64, 32]  # Post processing (None, or filter parameter list)
+  marching_cubes_filter: 100  # Posting processing (None, or N of iterations)

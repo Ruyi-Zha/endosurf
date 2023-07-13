@@ -1,0 +1,95 @@
+exp:  # Experiment options
+  project_name: endosurf
+  exp_name: base   # Experiment name
+  exp_dir: logs/   # Where to save experiment results
+
+data:  # Dataset and dataloader options
+  info_dir: data/data_info/scared2019/dataset_3_keyframe_1_disparity.pkl  # Path of information file
+  normalize_time: True  # If normalize time to [0, 1]
+
+render:
+  type: endosurf
+  net_chunk: 80000  # Number of inputs sent into network each time
+  anneal_end: 50000
+  n_samples: 32
+  n_importance: 32
+  important_begin_iter: 0  # When to start fine sampling
+  up_sample_steps: 4  # Perform x steps of up sampling
+  perturb: True
+
+train:
+  n_iter: 100000  # Training iterations
+  ray_batch: 1024  # Number of rays sampled from an image per training iteration
+  mask_guided_ray_sampling: True  # If use masked guided ray casting
+  color_loss_weight: 1.0  # Color loss weight
+  depth_loss_weight: 1.0  # Depth loss weight
+  sdf_loss_weight: 1.0  # SDF loss weight
+  angle_loss_weight: 0.1  # Angle loss weight
+  eikonal_loss_weight: 0.1  # Eikonal loss weight
+  surf_neig_loss_weight: 0.1  # Surface neighbour loss
+  surf_neig_rad: 0.1  # Surface neighbour radius
+  resume: False  # If resume training
+  optim:  # Optimizer options
+    lr: 0.0005
+    lr_alpha: 0.05
+    warm_up_end: 5000  # When to stop warm up
+  eval:  # Test options
+    ray_chunk: 2048  # Number of rays processed each time during training
+
+
+net:  # Network options
+  bound: 1.0
+  use_deform: False
+  deform_network:  # Deform network
+    enc_pos_cfg:  # Encoder for position
+      enc_type: frequency 
+      input_dim: 3
+      multires: 6
+    enc_time_cfg:  # Encoder for time
+      enc_type: frequency 
+      input_dim: 1
+      multires: 6
+    n_layers: 9
+    hidden_dim: 256
+    skips: [4]
+    out_dim: 3
+  sdf_network:  # SDF network
+    enc_pos_cfg:  # Encoder for position
+      enc_type: frequency 
+      input_dim: 3
+      multires: 6
+    n_layers: 9
+    hidden_dim: 256
+    skips: [4]
+    out_dim: 257
+    geometric_init: True
+    geometric_init_bias: 0.8
+  color_network:  # Color network
+    enc_pos_cfg:  # Encoder for direction
+      enc_type: frequency
+      input_dim: 3
+      multires: 10
+    enc_dir_cfg:  # Encoder for direction
+      enc_type: frequency 
+      input_dim: 3
+      multires: 4
+    n_layers: 9
+    hidden_dim: 256
+    skips: [4]
+    feat_dim: 256
+    out_dim: 3
+  deviation_network:  # Deviation network for stage 0
+    init_val: 0.3
+
+log:  # Logging options
+  summary_writer: 
+    type: tensorboard  # Tool for tracking experiments (wandb, tensorboard)
+  i_eval: 20000  # Test every N iterations
+  i_save: 2500  # Save model every N iterations
+
+demo:
+  fps: 10  # Frame rate of demo video and gif
+  ray_batch: 1024  # Number of rays processed each time
+  net_chunk: 5000  # Number of points processed each time
+  marching_cubes_resolution: 128  # Marhing cube resolution
+  marching_cubes_thresh: 0  # Marhing cube threshold
