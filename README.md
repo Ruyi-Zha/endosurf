@@ -42,7 +42,7 @@ Use `src/trainer/trainer_endosurf.py` for training. You can find all configurati
 
 ``` sh
 # Train EndoSurf on pulling_soft_tissues
-UDA_VISIBLE_DEVICES=0 python src/trainer/trainer_endosurf.py --cfg configs/endosurf/baseline/base_pull.yml --mode train
+CUDA_VISIBLE_DEVICES=0 python src/trainer/trainer_endosurf.py --cfg configs/endosurf/baseline/base_pull.yml --mode train
 # Train EndoSurf on cutting_tissues_twice
 CUDA_VISIBLE_DEVICES=0 python src/trainer/trainer_endosurf.py --cfg configs/endosurf/baseline/base_cut.yml --mode train
 # Train EndoSurf on scared2019_dataset_1_keyframe_1
