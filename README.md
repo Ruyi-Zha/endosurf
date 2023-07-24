@@ -1,6 +1,6 @@
 # EndoSurf: Neural Surface Reconstruction of Deformable Tissues with Stereo Endoscope Videos
 
-### [Paper (Coming soon)]() | [Models](https://drive.google.com/drive/folders/1PdrdrUB_v21ygvS4An8WGd4cprsq92Ps?usp=sharing)
+### [Paper](https://arxiv.org/abs/2307.11307) | [Models](https://drive.google.com/drive/folders/1PdrdrUB_v21ygvS4An8WGd4cprsq92Ps?usp=sharing)
 
 Code for MICCAI 2023 paper *EndoSurf: Neural Surface Reconstruction of Deformable Tissues with Stereo Endoscope Videos* by [Ruyi Zha](https://ruyi-zha.github.io/), [Xuelian Cheng](https://xueliancheng.github.io/), [Hongdong Li](http://users.cecs.anu.edu.au/~hongdong/), [Mehrtash Harandi](https://sites.google.com/site/mehrtashharandi/home) and [Zongyuan Ge](https://zongyuange.github.io/).
 
