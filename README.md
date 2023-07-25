@@ -17,7 +17,7 @@ EndoSurf is a neural-field-based method that reconstructs the deforming surgical
 
 ## Setup
 
-We recommond using Miniconda to set up the environment.
+We recommend using Miniconda to set up the environment.
 
 ```sh
 # Create conda environment
@@ -93,7 +93,7 @@ CUDA_VISIBLE_DEVICES=0 python src/trainer/trainer_endosurf.py \
 
 ## Reproducing results in the paper 
 
-To reproduce all results shown in the paper, first download data information files `*.pkl` from [here](https://drive.google.com/drive/folders/1CjmYmGxIWh7DRE14tSorL9-tAQsHVLTt?usp=sharing) and replace the previous files in `data/data_info`. This is because `preprocess.py` invovles some random operations e.g., point cloud noise removal. Then download the pretrained models from [here](logs/README.md). You can find all training/test/demo commands for our method, baseline methods and ablation study from `scripts.sh`.
+To reproduce all results shown in the paper, first download data information files `*.pkl` from [here](https://drive.google.com/drive/folders/1CjmYmGxIWh7DRE14tSorL9-tAQsHVLTt?usp=sharing) and replace the previous files in `data/data_info`. This is because `preprocess.py` involves some random operations e.g., point cloud noise removal. Then download the pretrained models from [here](logs/README.md). You can find all training/test/demo commands for our method, baseline methods and ablation study from `scripts.sh`.
 
 
 ### Contact
