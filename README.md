@@ -2,7 +2,7 @@
 
 ### [Paper](https://arxiv.org/abs/2307.11307) | [Models](https://drive.google.com/drive/folders/1PdrdrUB_v21ygvS4An8WGd4cprsq92Ps?usp=sharing)
 
-Code for MICCAI 2023 paper *EndoSurf: Neural Surface Reconstruction of Deformable Tissues with Stereo Endoscope Videos* by [Ruyi Zha](https://ruyi-zha.github.io/), [Xuelian Cheng](https://xueliancheng.github.io/), [Hongdong Li](http://users.cecs.anu.edu.au/~hongdong/), [Mehrtash Harandi](https://sites.google.com/site/mehrtashharandi/home) and [Zongyuan Ge](https://zongyuange.github.io/).
+Code for MICCAI 2023 Oral paper *EndoSurf: Neural Surface Reconstruction of Deformable Tissues with Stereo Endoscope Videos* by [Ruyi Zha](https://ruyi-zha.github.io/), [Xuelian Cheng](https://xueliancheng.github.io/), [Hongdong Li](http://users.cecs.anu.edu.au/~hongdong/), [Mehrtash Harandi](https://sites.google.com/site/mehrtashharandi/home) and [Zongyuan Ge](https://zongyuange.github.io/).
 
 EndoSurf is a neural-field-based method that reconstructs the deforming surgical sites with stereo endoscope videos.
 
@@ -91,10 +91,25 @@ CUDA_VISIBLE_DEVICES=0 python src/trainer/trainer_endosurf.py \
     --cfg configs/endosurf/baseline/base_pull.yml --mode demo_3d
 ```
 
+To render 2D images and 3D meshes of all frames (e.g. GIFs in demo), use mode `--mode demo`.
+
+```sh
+# Render both images and meshes
+CUDA_VISIBLE_DEVICES=0 python src/trainer/trainer_endosurf.py \
+    --cfg configs/endosurf/baseline/base_pull.yml --mode demo
+
+# Render 2D images only
+CUDA_VISIBLE_DEVICES=0 python src/trainer/trainer_endosurf.py \
+    --cfg configs/endosurf/baseline/base_pull.yml --mode demo_2d
+
+# Render 3D meshes only
+CUDA_VISIBLE_DEVICES=0 python src/trainer/trainer_endosurf.py \
+    --cfg configs/endosurf/baseline/base_pull.yml --mode demo_3d
+```
+
 ## Reproducing results in the paper 
 
 To reproduce all results shown in the paper, first download data information files `*.pkl` from [here](https://drive.google.com/drive/folders/1CjmYmGxIWh7DRE14tSorL9-tAQsHVLTt?usp=sharing) and replace the previous files in `data/data_info`. This is because `preprocess.py` involves some random operations e.g., point cloud noise removal. Then download the pretrained models from [here](logs/README.md). You can find all training/test/demo commands for our method, baseline methods and ablation study from `scripts.sh`.
-
 
 ### Contact
 For any queries, please contact **ruyi.zha@anu.edu.au**.
