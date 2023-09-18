@@ -365,7 +365,7 @@ def cal_rmse(a, b, mask):
     if len(mask.shape) == len(a.shape) - 1:
         mask = mask[..., None]
     mask_sum = np.sum(mask) + 1e-10
-    rmse = (((a - b)**2 * mask).sum() / (mask_sum * 3.0))**0.5
+    rmse = (((a - b)**2 * mask).sum() / (mask_sum))**0.5
     return rmse
 
 
