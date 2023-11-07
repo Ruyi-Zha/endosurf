@@ -39,7 +39,7 @@ def create_scared_info(dset_dir,
     scene_name = osp.basename(dset_dir)
     
     calibs_dir = osp.join(dset_dir, "data", "frame_data")
-    rgbs_dir = osp.join(dset_dir, "data", "left")
+    rgbs_dir = osp.join(dset_dir, "data", "left_finalpass")
     disps_dir = osp.join(dset_dir, "data", disp_type)
     reproj_dir = osp.join(dset_dir, "data", "reprojection_data")
     frame_ids = sorted([id[:-5] for id in os.listdir(calibs_dir)])
