@@ -20,7 +20,7 @@ Follow [MICCAI_challenge_preprocess](https://github.com/EikoLoki/MICCAI_challeng
 │   │   │   │   ├── data
 │   │   │   │   │   ├── disparity
 │   │   │   │   │   ├── frame_data
-│   │   │   │   │   ├── left
+│   │   │   │   │   ├── left_finalpass
 │   │   │   │   │   ├── reprojection_data
 │   │   │   │   │   ├── ...
 │   │   │   │   ├── ...
